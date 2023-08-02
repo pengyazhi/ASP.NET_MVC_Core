@@ -1,0 +1,71 @@
+﻿@model IEnumerable<prjMvcCoreDemo.Models.TCustomer>
+
+@{
+    ViewData["Title"] = "List";
+}
+
+<h1>客戶資料一覽表</h1>
+@using (Html.BeginForm())
+{
+    @:關鍵字 @Html.TextBox("txtKeyword")
+    <input type="submit" value="查詢" />
+}
+    
+
+<p>
+    <a asp-action="Create">新增客戶</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FPhone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FEmail)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FAddress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FPassword)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FPhone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FEmail)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FAddress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FPassword)
+            </td>
+            <td>
+                    @Html.ActionLink("修改", "Edit", new {  id=item.FId },new {@class="btn btn-success"}) |
+                    @Html.ActionLink("刪除", "Delete", new {  id=item.FId },new { onclick = "return confirm('確定要刪除嗎?')",
+                @class="btn btn-danger"})
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
